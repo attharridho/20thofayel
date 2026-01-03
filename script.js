@@ -1,4 +1,28 @@
 // --- PASSWORD SYSTEM ---
+function addInput(val) {
+    const input = document.getElementById('passInput');
+    const error = document.getElementById('errorMsg');
+    
+    // Reset error message saat user mulai mengetik
+    if(!error.classList.contains('hidden')) {
+        error.classList.add('hidden');
+        input.classList.remove('border-red-500', 'animate-shake');
+    }
+
+    if (input.value.length < 2) { 
+        input.value += val;
+    }
+}
+
+function clearInput() {
+    document.getElementById('passInput').value = '';
+}
+
+function backspaceInput() {
+    const input = document.getElementById('passInput');
+    input.value = input.value.slice(0, -1);
+}
+
 function checkPassword() {
     const input = document.getElementById('passInput');
     const error = document.getElementById('errorMsg');
@@ -16,9 +40,12 @@ function checkPassword() {
         input.classList.add('animate-shake');
         input.classList.add('border-red-500');
         error.classList.remove('hidden');
+        
+        // Hapus input jika salah agar bisa coba lagi
         setTimeout(() => {
             input.classList.remove('animate-shake');
-            input.classList.remove('border-red-500');
+            // Biarkan border merah sebagai indikator salah
+            input.value = ''; 
         }, 500);
     }
 }
@@ -269,3 +296,4 @@ window.onload = function() {
     }
 
 };
+
