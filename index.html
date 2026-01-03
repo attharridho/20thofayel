@@ -77,18 +77,38 @@
     </button>
 
     <!-- SECTION 1: INTRO / PASSWORD -->
+        <!-- SECTION 1: INTRO / PASSWORD -->
     <div id="introSection" class="fixed inset-0 bg-moriarty-yellow z-50 flex flex-col items-center justify-center p-6 text-center transition-opacity duration-1000">
         <div class="mb-6 animate-float">
-            <i class="fas fa-hat-cowboy-side text-6xl text-moriarty-dark mb-4"></i> 
+            <i class="fas fa-heart text-6xl text-moriarty-dark mb-4"></i> 
             <h2 class="font-header text-3xl font-bold mb-2">hepi bisdey</h2>
-            <p class="text-sm italic">"wleowlewoellewlwoewlewo"</p>
+            <p class="text-sm italic">"hehe kepala 2"</p>
         </div>
         
         <div class="bg-white/50 p-8 rounded-lg shadow-xl border border-moriarty-gold max-w-sm w-[90%] md:w-full backdrop-blur-sm">
             <label class="block text-sm font-bold mb-2">Masukkan Kode Akses (Umur Kamu)</label>
-            <input type="password" id="passInput" class="w-full p-3 border-2 border-moriarty-gold rounded bg-transparent text-center text-xl tracking-widest focus:outline-none focus:border-red-800 transition" placeholder="??">
-            <button onclick="checkPassword()" class="mt-4 w-full bg-moriarty-dark text-white py-2 rounded hover:bg-gray-800 transition font-header">UNLOCK</button>
-            <p id="errorMsg" class="text-red-500 text-sm mt-2 hidden">Kode salah! Coba lagi.</p>
+            
+            <!-- Password Input (ReadOnly agar pakai keypad) -->
+            <input type="password" id="passInput" class="w-full p-3 border-2 border-moriarty-gold rounded bg-white/80 text-center text-xl tracking-widest focus:outline-none focus:border-red-800 transition mb-4 cursor-default" placeholder="??" readonly>
+            
+            <!-- Keypad Angka -->
+            <div class="grid grid-cols-3 gap-3 mb-6">
+                <button onclick="addInput('1')" class="bg-white hover:bg-moriarty-gold text-moriarty-dark font-bold py-3 rounded shadow transition border border-moriarty-gold/30">1</button>
+                <button onclick="addInput('2')" class="bg-white hover:bg-moriarty-gold text-moriarty-dark font-bold py-3 rounded shadow transition border border-moriarty-gold/30">2</button>
+                <button onclick="addInput('3')" class="bg-white hover:bg-moriarty-gold text-moriarty-dark font-bold py-3 rounded shadow transition border border-moriarty-gold/30">3</button>
+                <button onclick="addInput('4')" class="bg-white hover:bg-moriarty-gold text-moriarty-dark font-bold py-3 rounded shadow transition border border-moriarty-gold/30">4</button>
+                <button onclick="addInput('5')" class="bg-white hover:bg-moriarty-gold text-moriarty-dark font-bold py-3 rounded shadow transition border border-moriarty-gold/30">5</button>
+                <button onclick="addInput('6')" class="bg-white hover:bg-moriarty-gold text-moriarty-dark font-bold py-3 rounded shadow transition border border-moriarty-gold/30">6</button>
+                <button onclick="addInput('7')" class="bg-white hover:bg-moriarty-gold text-moriarty-dark font-bold py-3 rounded shadow transition border border-moriarty-gold/30">7</button>
+                <button onclick="addInput('8')" class="bg-white hover:bg-moriarty-gold text-moriarty-dark font-bold py-3 rounded shadow transition border border-moriarty-gold/30">8</button>
+                <button onclick="addInput('9')" class="bg-white hover:bg-moriarty-gold text-moriarty-dark font-bold py-3 rounded shadow transition border border-moriarty-gold/30">9</button>
+                <button onclick="clearInput()" class="bg-red-100 hover:bg-red-200 text-red-800 font-bold py-3 rounded shadow transition">C</button>
+                <button onclick="addInput('0')" class="bg-white hover:bg-moriarty-gold text-moriarty-dark font-bold py-3 rounded shadow transition border border-moriarty-gold/30">0</button>
+                <button onclick="backspaceInput()" class="bg-yellow-100 hover:bg-yellow-200 text-moriarty-dark font-bold py-3 rounded shadow transition"><i class="fas fa-backspace"></i></button>
+            </div>
+
+            <button onclick="checkPassword()" class="w-full bg-moriarty-dark text-white py-3 rounded hover:bg-gray-800 transition font-header tracking-wider shadow-lg">UNLOCK</button>
+            <p id="errorMsg" class="text-red-500 text-sm mt-2 hidden text-center font-bold">Kode salah! Coba lagi.</p>
         </div>
     </div>
 
@@ -266,6 +286,7 @@
 </body>
 
 </html>
+
 
 
 
