@@ -104,6 +104,16 @@ function showMsg(title, msg, imageSrc, profileImageSrc) {
             </div>
         `;
     }
+     let linkHTML = '';
+    if (linkUrl) {
+        linkHTML = `
+            <div class="mt-6">
+                <a href="${linkUrl}" target="_blank" class="inline-block bg-red-600 text-white font-bold py-2 px-6 rounded-full hover:bg-red-700 transition shadow-lg transform hover:scale-105 animate-bounce">
+                    <i class="fas fa-gift mr-2"></i> klik disini susurupris
+                </a>
+            </div>
+        `;
+    }
 
     // Menggunakan mt-12 pada container relatif utama untuk memberi ruang bagi foto profil
     content.innerHTML = `
@@ -257,4 +267,5 @@ window.onload = function() {
             }
         });
     }
+
 };
