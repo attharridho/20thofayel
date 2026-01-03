@@ -195,7 +195,6 @@
                         </div>
                         <div class="p-6 pt-8">
                             <p class="text-sm text-gray-500 mb-4 italic">"Ada pesan rahasia nih..."</p>
-                            <!-- Updated Button with Drive Link -->
                             <button onclick="showMsg('From: Ciyak', 'selamat meninggalkan usia remaja, ayel. semoga kamu bisa selalu maju dan survive di usia kepala 2 iniiiiiii. aku harap kamu bisa merasa cukup atas segala pencapaian kamu yaa, aku bangga banget kamu bisa sehebat ini pas sampe di usia 20 tahun! trimakasii uda jadi sahabat yang sangat amat baik dan sempurna di mata aku, aku bersyukur banget bisa ada kamu selama ini. umm mungkin lebih panjangnya aku chat di wa aja yaaaaaa, oiya aku ada sedikit hadiah lagi buat kamu, klik tombol di bawah yaa!', 'hasil-gambar.png', 'maomao.jpg', 'https://drive.google.com/drive/folders/1ag0hbx4aGNLRJufVfis6Iz-jPp5_Jfu7')" class="w-full bg-moriarty-gold text-moriarty-dark font-bold py-2 px-4 rounded hover:bg-yellow-400 transition shadow">
                                 <i class="fas fa-envelope-open-text mr-2"></i> Buka Pesan
                             </button>
@@ -233,15 +232,18 @@
         </section>
 
         <!-- SECTION 6: WALL OF WISHES -->
-        <section class="py-16 md:py-20 px-4 bg-moriarty-dark text-moriarty-yellow relative">
+    <section class="py-16 md:py-20 px-4 bg-moriarty-dark text-moriarty-yellow relative">
             <h2 class="font-header text-2xl md:text-3xl text-center mb-8">Wall of Wishes</h2>
             
             <div class="max-w-md mx-auto mb-10 w-full">
                 <textarea id="wishInput" class="w-full p-3 rounded text-gray-800 focus:outline-none focus:ring-2 focus:ring-moriarty-gold" rows="3" placeholder="Tulis harapanmu untuk Ayel di sini..."></textarea>
                 <button onclick="addWish()" class="mt-2 w-full bg-moriarty-gold text-moriarty-dark font-bold py-2 rounded hover:bg-yellow-400 transition">Kirim Harapan</button>
             </div>
+
+            <div id="wishesContainer" class="flex flex-wrap justify-center gap-4">
             </div>
         </section>
+
 
         <!-- SECTION 7: ENDING -->
         <section class="py-16 md:py-20 px-4 text-center bg-moriarty-dark text-moriarty-yellow">
@@ -286,6 +288,7 @@
 </body>
 
 </html>
+
 
 
 
