@@ -1,28 +1,4 @@
 // --- PASSWORD SYSTEM ---
-function addInput(val) {
-    const input = document.getElementById('passInput');
-    const error = document.getElementById('errorMsg');
-    
-    // Reset error message saat user mulai mengetik
-    if(!error.classList.contains('hidden')) {
-        error.classList.add('hidden');
-        input.classList.remove('border-red-500', 'animate-shake');
-    }
-
-    if (input.value.length < 2) { 
-        input.value += val;
-    }
-}
-
-function clearInput() {
-    document.getElementById('passInput').value = '';
-}
-
-function backspaceInput() {
-    const input = document.getElementById('passInput');
-    input.value = input.value.slice(0, -1);
-}
-
 function checkPassword() {
     const input = document.getElementById('passInput');
     const error = document.getElementById('errorMsg');
@@ -40,14 +16,35 @@ function checkPassword() {
         input.classList.add('animate-shake');
         input.classList.add('border-red-500');
         error.classList.remove('hidden');
-        
-        // Hapus input jika salah agar bisa coba lagi
         setTimeout(() => {
             input.classList.remove('animate-shake');
-            // Biarkan border merah sebagai indikator salah
-            input.value = ''; 
+            input.classList.remove('border-red-500');
         }, 500);
     }
+}
+
+// --- PASSWORD KEYPAD LOGIC ---
+function addInput(val) {
+    const input = document.getElementById('passInput');
+    const error = document.getElementById('errorMsg');
+    
+    if(!error.classList.contains('hidden')) {
+        error.classList.add('hidden');
+        input.classList.remove('border-red-500', 'animate-shake');
+    }
+
+    if (input.value.length < 2) { 
+        input.value += val;
+    }
+}
+
+function clearInput() {
+    document.getElementById('passInput').value = '';
+}
+
+function backspaceInput() {
+    const input = document.getElementById('passInput');
+    input.value = input.value.slice(0, -1);
 }
 
 // --- AUDIO ---
@@ -103,12 +100,11 @@ function openModal(imgSrc, caption) {
     modal.classList.remove('hidden');
 }
 
+// PERBAIKAN DI SINI: Menambahkan parameter linkUrl dan logika tombolnya
 function showMsg(title, msg, imageSrc, profileImageSrc, linkUrl) {
     const modal = document.getElementById('modal');
     const content = document.getElementById('modalContent');
 
-    // Ubah style wrapper untuk kartu pesan
-    // Menambahkan mx-auto agar centered, dan w-[85%] agar tidak mepet di mobile
     if(content.parentElement) {
         content.parentElement.className = 'bg-transparent p-0 w-[85%] md:w-full max-w-sm relative mx-auto';
     }
@@ -124,7 +120,6 @@ function showMsg(title, msg, imageSrc, profileImageSrc, linkUrl) {
 
     let profileHTML = '';
     if (profileImageSrc) {
-        // Menggunakan absolute positioning dengan translate-x-1/2 agar tepat di tengah
         profileHTML = `
             <div class="absolute -top-12 left-1/2 transform -translate-x-1/2 w-24 h-24 rounded-full border-4 border-moriarty-gold shadow-lg overflow-hidden bg-white z-20 animate-pop">
                 <img src="${profileImageSrc}" class="w-full h-full object-cover">
@@ -132,24 +127,21 @@ function showMsg(title, msg, imageSrc, profileImageSrc, linkUrl) {
         `;
     }
 
-    // New: Link Button Logic
+    // Logika tombol link drive
     let linkHTML = '';
     if (linkUrl) {
         linkHTML = `
             <div class="mt-6">
-                <a href="${linkUrl}" target="_blank" class="inline-block bg-red-600 text-white font-bold py-2 px-6 rounded-full hover:bg-red-700 transition shadow-lg transform hover:scale-105 animate-bounce">
+                <a href="${linkUrl}" target="_blank" class="inline-block bg-red-600 text-white font-bold py-2 px-6 rounded-full hover:bg-red-700 transition shadow-lg transform hover:scale-105 animate-bounce text-sm md:text-base">
                     <i class="fas fa-gift mr-2"></i> klik disini susurupris
                 </a>
             </div>
         `;
     }
 
-    // Menggunakan mt-12 pada container relatif utama untuk memberi ruang bagi foto profil
     content.innerHTML = `
         <div class="relative mt-12 w-full"> 
-            
              ${profileHTML}
-
             <div class="bg-white rounded-lg shadow-2xl border-4 border-double border-moriarty-gold overflow-hidden">
                 <div class="bg-moriarty-dark text-moriarty-yellow h-16 w-full"></div>
                 
@@ -157,7 +149,7 @@ function showMsg(title, msg, imageSrc, profileImageSrc, linkUrl) {
                     <h3 class="font-header text-xl md:text-2xl font-bold mb-2 text-moriarty-dark">${title}</h3>
                     <p class="font-body text-base md:text-lg italic text-gray-700 leading-relaxed">"${msg}"</p>
                     ${imageHTML}
-                    ${linkHTML}
+                    ${linkHTML} 
                     
                     <div class="mt-6">
                         <i class="fas fa-heart text-red-500 text-3xl animate-pulse filter drop-shadow-md"></i>
@@ -277,7 +269,6 @@ function fireConfetti() {
 }
 
 window.onload = function() {
-    // Sembunyikan container Quiz jika ada
     const quizContainer = document.getElementById('quizContainer');
     if(quizContainer && quizContainer.parentElement) {
         quizContainer.parentElement.style.display = 'none';
