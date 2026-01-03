@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 20th Birthday Ayel</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Link ke CSS Eksternal -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Font Awesome & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    
+    <!-- Konfigurasi Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'moriarty-yellow': '#FFF9C4',
+                        'moriarty-gold': '#FBC02D',
+                        'moriarty-dark': '#3E2723',
+                        'moriarty-accent': '#FFF176',
+                        'pastel-pink': '#FFCDD2',
+                    },
+                    fontFamily: {
+                        'header': ['Cinzel', 'serif'],
+                        'body': ['Lato', 'sans-serif'],
+                        'script': ['Great Vibes', 'cursive'],
+                    },
+                    animation: {
+                        'shake': 'shake 0.5s cubic-bezier(.36,.07,.19,.97) both',
+                        'float': 'float 3s ease-in-out infinite',
+                        'wiggle': 'wiggle 1s ease-in-out infinite',
+                        'type': 'typing 3.5s steps(40, end)',
+                        'pop': 'pop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
+                    },
+                    keyframes: {
+                        shake: {
+                            '10%, 90%': { transform: 'translate3d(-1px, 0, 0)' },
+                            '20%, 80%': { transform: 'translate3d(2px, 0, 0)' },
+                            '30%, 50%, 70%': { transform: 'translate3d(-4px, 0, 0)' },
+                            '40%, 60%': { transform: 'translate3d(4px, 0, 0)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        wiggle: {
+                            '0%, 100%': { transform: 'rotate(-3deg)' },
+                            '50%': { transform: 'rotate(3deg)' },
+                        },
+                        pop: {
+                            '0%': { opacity: '0', transform: 'scale(0.5)' },
+                            '100%': { opacity: '1', transform: 'scale(1)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-moriarty-yellow text-moriarty-dark font-body overflow-x-hidden">
+
+    <!-- Audio Background -->
+    <audio id="bgMusic" loop>
+        <source src="https://upload.wikimedia.org/wikipedia/commons/e/eb/Schubert_-_Impromptu_Op._90_No._3.ogg" type="audio/ogg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Music Control -->
+    <button id="musicBtn" class="fixed top-4 right-4 z-50 bg-moriarty-gold text-white p-3 rounded-full shadow-lg hover:bg-yellow-600 transition hidden">
+        <i class="fas fa-volume-mute"></i>
+    </button>
+
+    <!-- SECTION 1: INTRO / PASSWORD -->
+    <div id="introSection" class="fixed inset-0 bg-moriarty-yellow z-50 flex flex-col items-center justify-center p-6 text-center transition-opacity duration-1000">
+        <div class="mb-6 animate-float">
+            <i class="fas fa-hat-cowboy-side text-6xl text-moriarty-dark mb-4"></i> 
+            <h2 class="font-header text-3xl font-bold mb-2">hepi bisdey</h2>
+            <p class="text-sm italic">"wleowlewoellewlwoewlewo"</p>
+        </div>
+        
+        <div class="bg-white/50 p-8 rounded-lg shadow-xl border border-moriarty-gold max-w-sm w-[90%] md:w-full backdrop-blur-sm">
+            <label class="block text-sm font-bold mb-2">Masukkan Kode Akses (Umur Kamu)</label>
+            <input type="password" id="passInput" class="w-full p-3 border-2 border-moriarty-gold rounded bg-transparent text-center text-xl tracking-widest focus:outline-none focus:border-red-800 transition" placeholder="??">
+            <button onclick="checkPassword()" class="mt-4 w-full bg-moriarty-dark text-white py-2 rounded hover:bg-gray-800 transition font-header">UNLOCK</button>
+            <p id="errorMsg" class="text-red-500 text-sm mt-2 hidden">Kode salah! Coba lagi.</p>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT (Hidden initially) -->
+    <main id="mainContent" class="hidden opacity-0 transition-opacity duration-1000">
+        
+        <!-- SECTION 2: HERO -->
+        <section class="min-h-screen flex flex-col items-center justify-center relative p-6 text-center bg-moriarty-yellow">
+            <div class="absolute inset-4 border-4 border-double border-moriarty-gold pointer-events-none opacity-50"></div>
+            
+            <div class="w-full max-w-[95%] mx-auto flex justify-center">
+                <h1 id="typingText" class="font-header text-lg sm:text-2xl md:text-5xl font-bold text-moriarty-dark mb-4 min-h-[3rem] tracking-wide"></h1>
+            </div>
+            
+            <p class="font-script text-2xl md:text-3xl text-yellow-700 animate-float mt-2">Today you turn 20</p>
+            
+            <div class="mt-12 animate-bounce">
+                <button onclick="scrollToSection('gallerySection')" class="text-moriarty-dark hover:text-red-700 transition">
+                    <i class="fas fa-heart text-4xl"></i>
+                    <p class="text-xs mt-1 font-header">Scroll Down</p>
+                </button>
+            </div>
+        </section>
+
+        <!-- SECTION 3: PHOTO SLIDER -->
+        <section id="gallerySection" class="py-12 md:py-20 px-4 bg-white relative">
+            <i class="fas fa-camera absolute top-6 left-4 text-3xl md:text-4xl text-moriarty-yellow opacity-50 rotate-12"></i>
+
+            <h2 class="font-header text-2xl md:text-3xl text-center mb-8 border-b-2 border-moriarty-gold inline-block mx-auto pb-2">Memories Gallery</h2>
+            
+            <div class="flex overflow-x-auto gap-4 py-4 px-2 hide-scroll snap-x snap-mandatory">
+                <!-- Item 1 -->
+                <div class="flex-none w-64 md:w-72 h-80 md:h-96 relative group snap-center cursor-pointer victorian-border bg-pastel-pink/20" onclick="openModal('ayel1.jpeg', 'Ayel diskusi')">
+                    <img src="ayel1.jpeg" alt="Foto Ayel" class="w-full h-full object-cover">
+                    <div class="absolute bottom-2 right-2 bg-white/80 px-2 py-1 text-xs font-bold rounded">14 Nov 2025</div>
+                </div>
+                <!-- Item 2 -->
+                <div class="flex-none w-64 md:w-72 h-80 md:h-96 relative group snap-center cursor-pointer victorian-border bg-pastel-pink/20" onclick="openModal('ayel2.jpeg', 'Ayel bingung')">
+                    <img src="ayel2.jpeg" alt="Foto Ayel" class="w-full h-full object-cover">
+                    <div class="absolute bottom-2 right-2 bg-white/80 px-2 py-1 text-xs font-bold rounded">14 Nov 2025</div>
+                </div>
+                <!-- Item 3 -->
+                <div class="flex-none w-64 md:w-72 h-80 md:h-96 relative group snap-center cursor-pointer victorian-border bg-pastel-pink/20" onclick="openModal('ayel3.jpeg', 'Ayel mukulin pejabat')">
+                    <img src="ayel3.jpeg" alt="Foto Ayel" class="w-full h-full object-cover">
+                    <div class="absolute bottom-2 right-2 bg-white/80 px-2 py-1 text-xs font-bold rounded">14 Nov 2025</div>
+                </div>
+                 <!-- Item 4 -->
+                 <div class="flex-none w-64 md:w-72 h-80 md:h-96 relative group snap-center cursor-pointer victorian-border bg-pastel-pink/20" onclick="openModal('ayel4.jpeg', 'Ayel abis tampil')">
+                    <img src="ayel4.jpeg" alt="Foto Ayel" class="w-full h-full object-cover">
+                    <div class="absolute bottom-2 right-2 bg-white/80 px-2 py-1 text-xs font-bold rounded">14 Nov 2025</div>
+                </div>
+                 <!-- Item 5 -->
+                 <div class="flex-none w-64 md:w-72 h-80 md:h-96 relative group snap-center cursor-pointer victorian-border bg-pastel-pink/20" onclick="openModal('ayel5.jpeg', 'Ini gong nya')">
+                    <img src="ayel5.jpeg" alt="Foto Ayel" class="w-full h-full object-cover">
+                    <div class="absolute bottom-2 right-2 bg-white/80 px-2 py-1 text-xs font-bold rounded">14 Nov 2025</div>
+                </div>
+            </div>
+            <p class="text-center text-sm italic mt-4 text-gray-500">Geser untuk melihat lebih banyak & Tap untuk memperbesar</p>
+        </section>
+
+        <!-- SECTION 4: MESSAGES -->
+        <section class="py-16 md:py-20 px-4 bg-yellow-50 relative overflow-hidden">
+             <i class="fas fa-envelope-open absolute bottom-10 right-4 text-4xl md:text-6xl text-moriarty-gold opacity-20 -rotate-12"></i>
+
+            <h2 class="font-header text-2xl md:text-3xl text-center mb-16 md:mb-12">Special Messages</h2>
+            
+            <div class="flex flex-col md:flex-row justify-center gap-24 md:gap-10 items-center md:items-end mt-10 md:mt-0">
+                
+                <!-- Card From Ciyak -->
+                <div class="text-center group w-64 relative">
+                    <div class="bg-white rounded-xl shadow-xl overflow-hidden border-2 border-moriarty-gold transform transition hover:-translate-y-2 hover:shadow-2xl">
+                        <div class="bg-moriarty-dark text-moriarty-yellow py-3 px-4">
+                            <h4 class="font-header font-bold text-lg tracking-wider">From: Ciyak</h4>
+                        </div>
+                        <div class="p-6 pt-8">
+                            <p class="text-sm text-gray-500 mb-4 italic">"Ada pesan rahasia nih..."</p>
+                            <button onclick="showMsg('From: Ciyak', 'lweowleowelwoelewoe', 'hasil-gambar.png', 'maomao.jpg')" class="w-full bg-moriarty-gold text-moriarty-dark font-bold py-2 px-4 rounded hover:bg-yellow-400 transition shadow">
+                                <i class="fas fa-envelope-open-text mr-2"></i> Buka Pesan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card From Jaki -->
+                <div class="text-center group w-64 relative">
+                    <div class="bg-white rounded-xl shadow-xl overflow-hidden border-2 border-moriarty-gold transform transition hover:-translate-y-2 hover:shadow-2xl">
+                        <div class="bg-moriarty-dark text-moriarty-yellow py-3 px-4">
+                            <h4 class="font-header font-bold text-lg tracking-wider">From: Jaki</h4>
+                        </div>
+                        <div class="p-6 pt-8">
+                            <p class="text-sm text-gray-500 mb-4 italic">"Jangan lupa dibaca ya!"</p>
+                            <button onclick="showMsg('From: Jaki', 'Hbd Ayel!!!! Semoga yang disemogakan tersemogakan *gabisa nulis ucapan jirlah', null, 'jinshi.jpg')" class="w-full bg-moriarty-gold text-moriarty-dark font-bold py-2 px-4 rounded hover:bg-yellow-400 transition shadow">
+                                <i class="fas fa-envelope-open-text mr-2"></i> Buka Pesan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: GIFT -->
+        <section class="py-16 md:py-20 px-4 max-w-full mx-auto flex justify-center bg-white relative">
+            <div class="absolute top-0 left-0 w-full h-2 bg-moriarty-gold opacity-50"></div>
+
+            <div class="bg-white p-6 rounded-lg shadow-xl border-2 border-moriarty-gold text-center w-full max-w-sm md:max-w-md transform hover:scale-105 transition duration-300">
+                <h3 class="font-header text-2xl mb-4">A Small Gift</h3>
+                <div id="giftBox" class="cursor-pointer" onclick="openGift()">
+                    <img id="giftImg" src="kotak-kado.png" alt="Kado" class="w-32 md:w-40 mx-auto">
+                    <p id="giftText" class="mt-4 font-bold text-gray-500">BUKA! BUKA! BUKA!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: WALL OF WISHES -->
+        <section class="py-16 md:py-20 px-4 bg-moriarty-dark text-moriarty-yellow relative">
+            <h2 class="font-header text-2xl md:text-3xl text-center mb-8">Wall of Wishes</h2>
+            
+            <div class="max-w-md mx-auto mb-10 w-full">
+                <textarea id="wishInput" class="w-full p-3 rounded text-gray-800 focus:outline-none focus:ring-2 focus:ring-moriarty-gold" rows="3" placeholder="Tulis harapanmu untuk Ayel di sini..."></textarea>
+                <button onclick="addWish()" class="mt-2 w-full bg-moriarty-gold text-moriarty-dark font-bold py-2 rounded hover:bg-yellow-400 transition">Kirim Harapan</button>
+            </div>
+
+            <div id="wishesContainer" class="flex flex-wrap justify-center gap-4">
+                <div class="bg-yellow-200 text-gray-800 p-4 w-36 h-36 md:w-40 md:h-40 shadow-lg transform rotate-2 font-handwriting flex items-center justify-center text-center text-xs md:text-sm font-semibold">
+                    "Ceritanya ucapan"
+                </div>
+                <div class="bg-pink-200 text-gray-800 p-4 w-36 h-36 md:w-40 md:h-40 shadow-lg transform -rotate-2 font-handwriting flex items-center justify-center text-center text-xs md:text-sm font-semibold">
+                    "Ini juga ceritanya ucapan"
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 7: ENDING -->
+        <section class="py-16 md:py-20 px-4 text-center bg-moriarty-yellow">
+            <button id="surpriseBtn" onclick="startSurprise()" class="bg-red-800 text-white px-6 py-3 md:px-8 md:py-3 rounded-full text-lg md:text-xl font-header hover:bg-red-900 shadow-xl transition transform hover:-translate-y-1 w-full md:w-auto">
+                Klik untuk Kejutan Terakhir
+            </button>
+
+            <div id="countdownOverlay" class="fixed inset-0 bg-black/90 z-50 flex items-center justify-center hidden">
+                <span id="countdownNum" class="text-7xl md:text-9xl text-moriarty-gold font-bold animate-ping">3</span>
+            </div>
+
+            <div id="secretMessage" class="hidden mt-10 p-6 md:p-8 border-4 border-double border-moriarty-gold inline-block max-w-[90%] md:max-w-2xl bg-white relative">
+                <i class="fas fa-crown text-4xl text-moriarty-gold absolute -top-6 left-1/2 transform -translate-x-1/2"></i>
+                <h2 class="font-header text-2xl md:text-4xl mb-4 mt-4">Pesan kita</h2>
+                <p class="mb-6 italic text-sm md:text-base">"Ciye bntar lagi bayar pajak."</p>
+                <img src="liam2.png" class="rounded shadow mx-auto mb-6 w-full md:w-auto">
+                
+                <button onclick="location.reload()" class="text-sm underline text-gray-500 hover:text-gray-800">Replay Experience</button>
+            </div>
+        </section>
+
+        <footer class="bg-moriarty-dark text-moriarty-yellow text-center py-4 text-xs">
+            <p>Created with <i class="fas fa-heart text-red-500"></i> for Ayel's 20th Birthday</p>
+            <p>By Ciyak & Jaki</p>
+        </footer>
+
+    </main>
+
+    <!-- Modal for Photos/Messages -->
+    <div id="modal" class="fixed inset-0 bg-black/80 z-[60] hidden flex items-center justify-center p-4" onclick="closeModal()">
+        <div class="bg-white p-2 rounded max-w-lg w-full relative" onclick="event.stopPropagation()">
+            <button onclick="closeModal()" class="absolute -top-10 right-0 text-white text-3xl">&times;</button>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <!-- Canvas for Confetti -->
+    <canvas id="confettiCanvas" class="fixed inset-0 pointer-events-none z-40"></canvas>
+    
+    <!-- Link ke JS Eksternal -->
+    <script src="script.js"></script>
+</body>
+</html>
