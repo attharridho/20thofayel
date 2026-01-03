@@ -103,7 +103,7 @@ function openModal(imgSrc, caption) {
     modal.classList.remove('hidden');
 }
 
-function showMsg(title, msg, imageSrc, profileImageSrc) {
+function showMsg(title, msg, imageSrc, profileImageSrc, linkUrl) {
     const modal = document.getElementById('modal');
     const content = document.getElementById('modalContent');
 
@@ -117,7 +117,7 @@ function showMsg(title, msg, imageSrc, profileImageSrc) {
     if (imageSrc) {
         imageHTML = `
             <div class="my-4">
-                <img src="hasil-gambar.png" class="w-full max-w-[180px] md:max-w-[200px] mx-auto rounded-lg shadow-md border-2 border-moriarty-gold transform transition hover:scale-105">
+                <img src="${imageSrc}" class="w-full max-w-[180px] md:max-w-[200px] mx-auto rounded-lg shadow-md border-2 border-moriarty-gold transform transition hover:scale-105">
             </div>
         `;
     }
@@ -131,7 +131,9 @@ function showMsg(title, msg, imageSrc, profileImageSrc) {
             </div>
         `;
     }
-     let linkHTML = '';
+
+    // New: Link Button Logic
+    let linkHTML = '';
     if (linkUrl) {
         linkHTML = `
             <div class="mt-6">
@@ -155,6 +157,7 @@ function showMsg(title, msg, imageSrc, profileImageSrc) {
                     <h3 class="font-header text-xl md:text-2xl font-bold mb-2 text-moriarty-dark">${title}</h3>
                     <p class="font-body text-base md:text-lg italic text-gray-700 leading-relaxed">"${msg}"</p>
                     ${imageHTML}
+                    ${linkHTML}
                     
                     <div class="mt-6">
                         <i class="fas fa-heart text-red-500 text-3xl animate-pulse filter drop-shadow-md"></i>
@@ -294,6 +297,4 @@ window.onload = function() {
             }
         });
     }
-
 };
-
